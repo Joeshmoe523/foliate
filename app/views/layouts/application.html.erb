@@ -25,6 +25,13 @@
   </head>
 
   <body>
+    <% if notice %>
+      <%= render "templates/notice", notice: notice %>
+    <% end %>
+    <% if alert %>
+      <%= render "templates/alert", alert: alert %>
+    <% end %>
+    
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
