@@ -24,7 +24,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="h-screen">
     <% if notice %>
       <%= render "templates/notice", notice: notice %>
     <% end %>
@@ -32,7 +32,7 @@
       <%= render "templates/alert", alert: alert %>
     <% end %>
     
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="h-screen bg-brand flex flex-col overflow-hidden">
       <%= yield %>
     </main>
   </body>
