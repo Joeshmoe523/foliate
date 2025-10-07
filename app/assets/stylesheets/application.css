@@ -8,3 +8,20 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Add your custom CSS here */
+.bg-brand {
+  background-color: var(--brand, #02363D);
+}
+.bg-brand-highlight {
+  background-color: var(--brand-highlight, #176F6F);
+}
+.bg-brand-accent {
+  background-color: var(--brand-accent, #E2F7F5);
+}
+.text-brand {
+  color: var(--brand, #02363D);
+}
+.text-brand-highlight {
+  color: var(--brand-highlight, #176F6F);
+}

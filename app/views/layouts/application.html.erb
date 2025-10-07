@@ -32,8 +32,20 @@
       <%= render "templates/alert", alert: alert %>
     <% end %>
     
-    <main class="h-screen bg-brand flex flex-col overflow-hidden">
-      <%= yield %>
-    </main>
+    <div class="h-screen bg-brand flex flex-col overflow-hidden">
+      <%= render "layouts/top_nav" %>
+
+      <div class="flex-1 flex overflow-hidden">
+        <% if current_user && controller_name != 'after_signup' %>
+          <%= render "layouts/sidenav" %>
+        <% end %>
+      
+        <%= yield %>
+
+        <% if current_user %>
+          <%= render "layouts/logout_modal" %>
+        <% end %>
+      </div>
+    </div>
   </body>
 </html>

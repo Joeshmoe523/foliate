@@ -1,0 +1,45 @@
+<!-- Side Navigation Bar -->
+<aside data-controller="sidebar" data-sidebar-target="sidebar" class="relative group transition-all duration-300 ease-in-out">
+  <nav class="space-y-1 px-2 py-1">
+    <div class="flex flex-col items-center space-y-4 py-4">
+      
+      <!-- Home Icon with Popover -->
+      <div class="relative">
+        <button data-popover-target="popover-home" data-popover-placement="right" data-popover-offset="15" type="button" class="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+        </button>
+        
+        <div data-popover id="popover-home" role="tooltip" class="absolute z-10 invisible inline-block w-48 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 left-20 top-0">
+          <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+            <h3 class="font-semibold text-gray-900 dark:text-white">Home</h3>
+          </div>
+          <div class="px-3 py-2">
+            <p class="text-sm">Navigate to the main dashboard and overview page.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Home Icon with Popover -->
+      <div class="relative">
+        <button data-popover-target="popover-one" data-popover-placement="right" data-popover-offset="15" type="button" class="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+        </button>
+        
+        <div data-popover id="popover-one" role="tooltip" class="fixed top-8 left-8 z-10 invisible inline-block w-48 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 left-20 top-0">
+          <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+            <h3 class="font-semibold text-gray-900 dark:text-white">Home</h3>
+          </div>
+          <div class="px-3 py-2">
+            <p class="text-sm">Navigate to the main dashboard and overview page.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</aside>
+
