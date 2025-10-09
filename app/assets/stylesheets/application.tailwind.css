@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --brand: #02363D;
+    --brand-highlight: #176F6F;
+    --brand-accent: #E2F7F5;
+    --brand-inverse: #A8E6E1;
+    --brand-hover: #0D5256;
+    --brand-active: #218C88;
+    --brand-active-light: #6FD6CE;
+  }
+
+  .bg-brand {
+    background-color: var(--brand, #02363D);
+  }
+  .bg-brand-highlight {
+    background-color: var(--brand-highlight, #176F6F);
+  }
+  .bg-brand-accent {
+    background-color: var(--brand-accent, #E2F7F5);
+  }
+  .text-brand {
+    color: var(--brand, #02363D);
+  }
+  .text-brand-highlight {
+    color: var(--brand-highlight, #176F6F);
+  }
+
+  .format :where(.format > ul > li > ul > li):first-child {
+    margin-top: 0em !important;
+  }
+  .format p:not(.not-format p) {
+    margin-top: 0em !important;
+    margin-bottom: 0em !important;
+    font-size: 1rem !important;
+  }
+  .format :where(li):not(:where([class~=not-format] *)) {
+    margin-top: 0em !important;
+    margin-bottom: 0em !important;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+  .format :where(li):not(:where([class~=not-format] *)) {
+    @apply !mt-0 !mb-0;
+  }
+} 
+
+@layer utilities {
+  .format :where(.format > ul > li):first-child,
+  .format :where(.format > ul > li):last-child,
+  .format :where(.format > ul > li) {
+    margin-top: 0.25em !important;
+    margin-bottom: 0.25em !important;
+  }
+  .rounded-tl-xl {
+    border-top-left-radius: 0.75rem;
+  }
+  .rounded-tr-xl {
+    border-top-right-radius: 0.75rem;
+  }
+  .rounded-bl-xl {
+    border-bottom-left-radius: 0.75rem;
+  }
+  .rounded-br-xl {
+    border-bottom-right-radius: 0.75rem;
+  }
+}

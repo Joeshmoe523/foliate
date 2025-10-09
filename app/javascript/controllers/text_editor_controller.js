@@ -4,7 +4,7 @@ import StarterKit from 'https://esm.sh/@tiptap/starter-kit@2.6.6';
 import Underline from 'https://esm.sh/@tiptap/extension-underline@2.6.6';
 
 export default class extends Controller {
-  static targets = ["editor"]
+  static targets = ["editor", "editorWrapper"]
   static values = {
     targetFieldId: String
   }
@@ -129,6 +129,16 @@ export default class extends Controller {
     if (window.Dropdown && dropdownElement && triggerElement) {
       const typographyDropdown = new window.Dropdown(dropdownElement, triggerElement);
       typographyDropdown.hide();
+    }
+  }
+
+  focusEditor(event) {
+    // Only focus if clicking on the wrapper (not if clicking inside the actual editor content)
+    if (event.target === this.editorWrapperTarget || event.target === this.editorTarget) {
+      if (this.editor) {
+        // Focus the editor and move cursor to the end of content
+        this.editor.commands.focus('end');
+      }
     }
   }
 

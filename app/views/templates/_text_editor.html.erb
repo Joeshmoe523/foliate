@@ -179,10 +179,13 @@
   </div>
 
   <%# Editor content area %>
-  <div class="px-4 py-2 bg-white border-b border-x border-gray-200 rounded-b-lg mb-4">
+  <div class="px-4 py-2 bg-white border-b border-x border-gray-200 rounded-b-lg mb-4 cursor-text overflow-y-auto"
+       style="height: 30vh;"
+       data-text-editor-target="editorWrapper"
+       data-action="click->text-editor#focusEditor">
     <div id="wysiwyg-text-editor-<%= target_field_id %>" 
        data-text-editor-target="editor"
-       class="block leading-trim w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+       class="block leading-trim w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 h-full"
        role="textbox"
        aria-label="Editor content"></div>
   </div>

@@ -1,10 +1,19 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
-    './app/views/**/*.html.erb',
+    './public/*.html',
     './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/views/**/*.{erb,haml,html,slim}',
+    './app/components/**/*.{erb,haml,html,slim,rb}',
     './app/assets/stylesheets/**/*.css',
-    './app/javascript/**/*.js'
+    './node_modules/flowbite/**/*.js'
+  ],
+  safelist: [
+    {
+      pattern: /rounded-(tl|tr|bl|br)-(sm|md|lg|xl|2xl|3xl)/,
+    }
   ],
   theme: {
     extend: {
