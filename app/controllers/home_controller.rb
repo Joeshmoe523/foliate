@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   end
 
   def dash
-    @reflection = ReflectionForm.new
+    @reflection = Reflection.new
   end
 end

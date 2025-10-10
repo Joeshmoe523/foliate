@@ -1,7 +1,7 @@
 <% content_for :page_content do %>
   <div class="p-8 bg-gray-100 rounded-tl-xl">
     <h1 class="text-2xl font-bold">Dashboard</h1>
-    <%= form_with(model: @reflection, url: "#", local: true) do |f| %>
+    <%= form_with(model: @reflection, url: reflections_path, method: :post) do |f| %>
       <%= f.text_area :content, hidden: true, id: "content" %>
       <%= render "templates/text_editor", target_field_id: "content" %>
     <% end %>

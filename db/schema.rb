@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_211231) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_10_211109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "growth_plans", force: :cascade do |t|
+    t.string "token", null: false
+    t.bigint "user_id"
+    t.string "visibility", default: "private", null: false
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_growth_plans_on_token", unique: true
+    t.index ["user_id"], name: "index_growth_plans_on_user_id"
+  end
+
+  create_table "reflections", force: :cascade do |t|
+    t.string "token", null: false
+    t.bigint "user_id", null: false
+    t.integer "parent_reflection_id"
+    t.string "reflectable_type"
+    t.integer "reflectable_id"
+    t.string "title", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_reflection_id"], name: "index_reflections_on_parent_reflection_id"
+    t.index ["reflectable_type", "reflectable_id"], name: "index_reflections_on_reflectable"
+    t.index ["token"], name: "index_reflections_on_token", unique: true
+    t.index ["user_id"], name: "index_reflections_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,4 +57,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_211231) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "growth_plans", "users"
+  add_foreign_key "reflections", "users"
 end
