@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_211231) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_10_202103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "reflections", force: :cascade do |t|
+    t.string "token", null: false
+    t.integer "user_id", null: false
+    t.integer "parent_reflection_id"
+    t.string "reflectable_type"
+    t.integer "reflectable_id"
+    t.string "title", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_reflection_id"], name: "index_reflections_on_parent_reflection_id"
+    t.index ["reflectable_type", "reflectable_id"], name: "index_reflections_on_reflectable"
+    t.index ["token"], name: "index_reflections_on_token", unique: true
+    t.index ["user_id"], name: "index_reflections_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
