@@ -12,6 +12,12 @@ class ReflectionsController < ApplicationController
   def create
     @reflection = current_user.reflections.build(reflection_params)
 
+    # Clear reflectable if no ID is selected
+    if @reflection.reflectable_id.blank?
+      @reflection.reflectable_type = nil
+      @reflection.reflectable_id = nil
+    end
+
     if @reflection.save
       redirect_to reflection_path(@reflection), notice: "Reflection created successfully."
     else

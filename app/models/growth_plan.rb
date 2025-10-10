@@ -3,6 +3,7 @@ class GrowthPlan < ApplicationRecord
 
   # Associations
   belongs_to :user, optional: true
+  has_many :reflections, as: :reflectable, dependent: :destroy
 
   # Validations
   validates :title, presence: true
