@@ -1,25 +1,22 @@
 <% content_for :page_content do %>
   <div class="p-8 bg-gray-100 rounded-tl-xl">
-    <h1 class="text-2xl font-bold">Dashboard</h1>
+
     <%= form_with(model: @reflection, url: reflections_path, method: :post) do |f| %>
 
-      <div>
-        
-      </div>
       <%= f.text_area :content, hidden: true, id: "content" %>
       <%= render "templates/text_editor", target_field_id: "content" %>
 
       <div class="flex items-center justify-between gap-4 bg-white px-4 pb-4 rounded-b-lg border-b border-x border-gray-300">
-        <div class="flex-1">
+        <div class="flex w-1/2">
           <%= f.hidden_field :reflectable_type, value: "GrowthPlan" %>
           <%= f.select :reflectable_id, 
                        options_from_collection_for_select(@growth_plans, :id, :title, @reflection.reflectable_id),
                        { include_blank: "No Growth Plan" },
-                       { class: "bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-1.5 px-2.5" } %>
+                       { class: "bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-brand-active focus:border-brand-active block w-full py-2 px-4" } %>
         </div>
         <div>
           <%= f.submit "Save Reflection", 
-                       class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2.5 py-1.5 focus:outline-none" %>
+                       class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer" %>
         </div>
       </div>
     <% end %>

@@ -25,6 +25,15 @@
   .bg-brand-accent {
     background-color: var(--brand-accent, #E2F7F5);
   }
+  .bg-brand-inverse {
+    background-color: var(--brand-inverse, #A8E6E1);
+  }
+  .bg-brand-active {
+    background-color: var(--brand-active, #218C88);
+  }
+  .bg-brand-active-light {
+    background-color: var(--brand-active-light, #6FD6CE);
+  }
   .text-brand {
     color: var(--brand, #02363D);
   }
