@@ -89,4 +89,74 @@
   .rounded-br-xl {
     border-bottom-right-radius: 0.75rem;
   }
+  
+  /* Calendar styling */
+  .simple-calendar {
+    @apply w-full;
+  }
+  
+  .simple-calendar table {
+    @apply w-full border-collapse;
+    table-layout: fixed !important;
+    width: 100% !important;
+  }
+  
+  .simple-calendar th {
+    @apply text-center text-xs font-medium text-gray-500 py-2 border-b border-gray-200;
+    width: 14.28% !important; /* 100% / 7 days = 14.28% */
+    min-width: 0;
+  }
+  
+  .simple-calendar td {
+    @apply text-center border-b border-gray-100;
+    width: 14.28% !important; /* 100% / 7 days = 14.28% */
+    min-width: 0;
+    padding: 0.25rem !important;
+  }
+  
+  .simple-calendar .calendar-day {
+    @apply min-h-[3rem] w-full flex items-center justify-center;
+    padding: 0.25rem !important;
+  }
+  
+  .simple-calendar .prev-month,
+  .simple-calendar .next-month {
+    @apply text-gray-300;
+  }
+  
+  .simple-calendar .today {
+    @apply bg-brand-accent rounded-lg;
+  }
+  
+  /* Force full width on calendar container */
+  .simple-calendar,
+  .simple-calendar table,
+  .simple-calendar tbody,
+  .simple-calendar tr {
+    width: 100% !important;
+  }
+  
+  /* Additional overrides for simple_calendar */
+  .simple-calendar table {
+    margin: 0 !important;
+    border-spacing: 0 !important;
+  }
+  
+  .simple-calendar th,
+  .simple-calendar td {
+    border: none !important;
+    vertical-align: middle !important;
+  }
+  
+  /* Ensure calendar fills container */
+  .simple-calendar {
+    display: block !important;
+  }
+  
+  .simple-calendar table {
+    display: table !important;
+  }
+  .calendar-title {
+    @apply text-lg font-semibold text-gray-800 mb-4;
+  }
 }
