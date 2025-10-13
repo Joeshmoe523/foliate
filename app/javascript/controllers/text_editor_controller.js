@@ -42,6 +42,8 @@ export default class extends Controller {
           // console.log('Editor updated:', editor.getHTML());
           // Update the hidden field with the editor's HTML content
           targetField.value = editor.getHTML();
+          // Update submit button state based on content
+          this.updateSubmitButtonState(editor);
         }
       });
 
@@ -58,6 +60,14 @@ export default class extends Controller {
       
       // Set up form submission listener to capture prompt
       this.setupFormSubmissionListener(form);
+      
+      // Set up submit button state management
+      this.setupSubmitButtonState(form);
+      
+      // Set initial submit button state after editor is ready
+      setTimeout(() => {
+        this.updateSubmitButtonState(this.editor);
+      }, 100);
     }
   }
 
@@ -161,6 +171,30 @@ export default class extends Controller {
       // Capture the current prompt before form submission
       this.capturePromptText();
     });
+  }
+
+  setupSubmitButtonState(form) {
+    this.submitButton = form.querySelector('input[type="submit"]');
+    if (this.submitButton) {
+      // Set initial state
+      this.updateSubmitButtonState(this.editor);
+    }
+  }
+
+  updateSubmitButtonState(editor) {
+    if (!this.submitButton) return;
+    
+    const hasContent = editor && editor.getText().trim().length > 0;
+    
+    if (hasContent) {
+      this.submitButton.disabled = false;
+      this.submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+      this.submitButton.classList.add('cursor-pointer');
+    } else {
+      this.submitButton.disabled = true;
+      this.submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+      this.submitButton.classList.remove('cursor-pointer');
+    }
   }
 
   capturePromptText() {
