@@ -7,6 +7,14 @@
     <div class="text-sm text-gray-500 mb-6">
       Created: <%= @reflection.created_at.strftime('%B %d, %Y at %I:%M %p') %>
     </div>
+
+    <% if @reflection.prompt_text.present? %>
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+        <p class="text-sm text-blue-700">
+          <strong>Prompt:</strong> <%= @reflection.prompt_text %>
+        </p>
+      </div>
+    <% end %>
     
     <div class="prose max-w-none">
       <%= simple_format(@reflection.content) %>

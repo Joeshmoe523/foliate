@@ -4,7 +4,7 @@ import StarterKit from 'https://esm.sh/@tiptap/starter-kit@2.6.6';
 import Underline from 'https://esm.sh/@tiptap/extension-underline@2.6.6';
 
 export default class extends Controller {
-  static targets = ["editor", "editorWrapper"]
+  static targets = ["editor", "editorWrapper", "promptSection"]
   static values = {
     targetFieldId: String
   }
@@ -55,6 +55,9 @@ export default class extends Controller {
 
       // Set up event listeners for toolbar buttons
       this.setupToolbarButtons();
+      
+      // Set up form submission listener to capture prompt
+      this.setupFormSubmissionListener(form);
     }
   }
 
@@ -138,6 +141,34 @@ export default class extends Controller {
       if (this.editor) {
         // Focus the editor and move cursor to the end of content
         this.editor.commands.focus('end');
+      }
+    }
+  }
+
+  togglePrompt(event) {
+    const isChecked = event.target.checked;
+    if (this.hasPromptSectionTarget) {
+      if (isChecked) {
+        this.promptSectionTarget.style.display = 'block';
+      } else {
+        this.promptSectionTarget.style.display = 'none';
+      }
+    }
+  }
+
+  setupFormSubmissionListener(form) {
+    form.addEventListener('submit', (event) => {
+      // Capture the current prompt before form submission
+      this.capturePromptText();
+    });
+  }
+
+  capturePromptText() {
+    if (this.hasPromptSectionTarget) {
+      const promptText = this.promptSectionTarget.querySelector('[data-reflection-prompt-target="prompt"]')?.textContent;
+      const promptField = document.getElementById('prompt_text');
+      if (promptField && promptText) {
+        promptField.value = promptText;
       }
     }
   }

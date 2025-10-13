@@ -13,6 +13,7 @@ class Reflection < ApplicationRecord
   # Validations
   validates :title, presence: true
   validates :user_id, presence: true
+  validates :prompt_text, length: { maximum: 255 }, allow_blank: true
 
   # Scopes
   scope :top_level, -> { where(parent_reflection_id: nil) }

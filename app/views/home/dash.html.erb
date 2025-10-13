@@ -2,12 +2,12 @@
   <div class="p-8 bg-gray-100 rounded-tl-xl">
 
     <%= form_with(model: @reflection, url: reflections_path, method: :post) do |f| %>
-
+      <%= f.text_field :prompt_text, hidden: true, id: "prompt_text" %>
       <%= f.text_area :content, hidden: true, id: "content" %>
       <%= render "templates/text_editor", target_field_id: "content" %>
 
       <div class="flex items-center justify-between gap-4 bg-white px-4 pb-4 rounded-b-lg border-b border-x border-gray-300">
-        <div class="flex w-1/2">
+        <div class="flex w-3/4 items-center gap-4">
           <%= f.hidden_field :reflectable_type, value: "GrowthPlan" %>
           <%= f.select :reflectable_id, 
                        options_from_collection_for_select(@growth_plans, :id, :title, @reflection.reflectable_id),
@@ -16,7 +16,8 @@
         </div>
         <div>
           <%= f.submit "Save Reflection", 
-                       class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer" %>
+                       class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer",
+                       data: { action: "click->text-editor#capturePromptText" } %>
         </div>
       </div>
     <% end %>
@@ -24,7 +25,9 @@
 <% end %>
 
 <% content_for :column_content do %>
-  <%= render "calendar" %>
+  <div class="pt-8 pr-8 bg-gray-100">
+    <%= render "calendar" %>
+  </div>
 <% end %>
 
 <div class="flex h-full w-full overflow-hidden">
@@ -32,7 +35,7 @@
 
     <div class="flex-1 w-full flex min-h-0">
       <!-- Left column content (75% width) -->
-      <div class="w-2/3 h-full overflow-y-auto min-h-0 border-r border-gray-200">
+      <div class="w-2/3 h-full overflow-y-auto min-h-0">
         <%= yield :page_content %>
       </div>
 

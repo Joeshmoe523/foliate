@@ -47,6 +47,6 @@ class ReflectionsController < ApplicationController
   end
 
   def reflection_params
-    params.require(:reflection).permit(:content, :title, :parent_reflection_id, :reflectable_type, :reflectable_id)
+    params.require(:reflection).permit(:content, :title, :parent_reflection_id, :reflectable_type, :reflectable_id, :prompt_text)
   end
 end

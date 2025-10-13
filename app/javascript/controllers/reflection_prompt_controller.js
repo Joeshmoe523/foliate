@@ -29,6 +29,12 @@ export default class extends Controller {
 
   updateDisplay() {
     this.promptTarget.textContent = this.prompts[this.currentIndex]
+    
+    // Update the hidden field with the current prompt
+    const promptField = document.getElementById('prompt_text');
+    if (promptField) {
+      promptField.value = this.prompts[this.currentIndex];
+    }
   }
 }
 

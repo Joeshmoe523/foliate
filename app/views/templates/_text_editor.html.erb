@@ -150,6 +150,19 @@
         </div>
 
         <div class="flex items-center gap-2">
+          <%# Reflection Prompt Toggle %>
+          <div class="flex items-center gap-2">
+            <label class="text-sm font-medium text-gray-700">Prompts</label>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" 
+                     id="reflection-prompt-toggle-<%= target_field_id %>" 
+                     class="sr-only peer" 
+                     checked 
+                     data-action="change->text-editor#togglePrompt">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
+
           <%# UNDO %>
           <button id="toggleUndoButton-<%= target_field_id %>" data-tooltip-target="tooltip-undo-<%= target_field_id %>" type="button" class="p-1.5 text-gray-500 rounded-sm cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -178,7 +191,8 @@
     </div>
   </div>
 
-  <div class="bg-white px-4 pt-4 border-x border-gray-300">
+  <%# Reflection Prompt Section %>
+  <div class="bg-white px-4 pt-4 border-x border-gray-300" data-text-editor-target="promptSection">
     <div data-controller="reflection-prompt" class="bg-brand-accent rounded-lg px-4 py-2">
       <div class="flex items-center justify-between gap-4">
         <!-- Left Arrow -->
