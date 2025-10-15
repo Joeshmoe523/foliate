@@ -1,31 +1,32 @@
 <% content_for :page_content do %>
-  <div class="p-8 bg-gray-100 rounded-tl-xl">
+  <div class="p-8 h-full bg-gray-100 rounded-tl-xl">
+    <div class="shadow-lg rounded-lg">
+      <%= form_with(model: @reflection, url: reflections_path, method: :post) do |f| %>
+        <%= f.text_field :prompt_text, hidden: true, id: "prompt_text" %>
+        <%= f.text_area :content, hidden: true, id: "content" %>
+        <%= render "templates/text_editor", target_field_id: "content" %>
 
-    <%= form_with(model: @reflection, url: reflections_path, method: :post) do |f| %>
-      <%= f.text_field :prompt_text, hidden: true, id: "prompt_text" %>
-      <%= f.text_area :content, hidden: true, id: "content" %>
-      <%= render "templates/text_editor", target_field_id: "content" %>
-
-      <div class="flex items-center justify-between gap-4 bg-white px-4 pb-4 rounded-b-lg border-b border-x border-gray-300">
-        <div class="flex w-3/4 items-center gap-4">
-          <%= f.hidden_field :reflectable_type, value: "GrowthPlan" %>
-          <%= f.select :reflectable_id, 
-                       options_from_collection_for_select(@growth_plans, :id, :title, @reflection.reflectable_id),
-                       { include_blank: "No Growth Plan" },
-                       { class: "bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-brand-active focus:border-brand-active block w-full py-2 px-4" } %>
+        <div class="flex items-center justify-between gap-4 bg-white px-4 pb-4 rounded-b-lg border-b border-x border-gray-300">
+          <div class="flex w-3/4 items-center gap-4">
+            <%= f.hidden_field :reflectable_type, value: "GrowthPlan" %>
+            <%= f.select :reflectable_id, 
+                        options_from_collection_for_select(@growth_plans, :id, :title, @reflection.reflectable_id),
+                        { include_blank: "No Growth Plan" },
+                        { class: "bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-brand-active focus:border-brand-active block w-full py-2 px-4" } %>
+          </div>
+          <div>
+            <%= f.submit "Save Reflection", 
+                        class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer",
+                        data: { action: "click->text-editor#capturePromptText" } %>
+          </div>
         </div>
-        <div>
-          <%= f.submit "Save Reflection", 
-                       class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer",
-                       data: { action: "click->text-editor#capturePromptText" } %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
 <% content_for :column_content do %>
-  <div class="pt-8 pr-8 bg-gray-100">
+  <div class="pt-8 px-8 bg-gray-100 h-full">
     <%= render "calendar" %>
   </div>
 <% end %>

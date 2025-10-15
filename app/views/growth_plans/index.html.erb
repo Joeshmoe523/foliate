@@ -1,0 +1,39 @@
+<% content_for :page_content do %>
+  <div class="flex flex-col h-full w-[90%] mx-auto">
+     <!-- Header section with title and New Growth Plan button -->
+     <div class="p-6">
+       <div class="flex items-center justify-between">
+         <h1 class="text-2xl font-bold text-gray-900">Growth Plans</h1>
+         <%= link_to "New Growth Plan", new_growth_plan_path, 
+            class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer" %>
+       </div>
+     </div>
+
+    <!-- Two-column layout for growth plans -->
+    <div class="flex-1 flex min-h-0">
+      <!-- Left column - Priority Growth Plans -->
+      <div class="w-1/2 h-full overflow-y-auto min-h-0 border-r border-gray-200">
+        <div class="p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Priority Growth Plans</h2>
+          <!-- Priority growth plans content will go here -->
+          <div class="text-gray-500">Priority growth plans content</div>
+        </div>
+      </div>
+
+      <!-- Right column - All Growth Plans -->
+      <div class="w-1/2 h-full overflow-y-auto min-h-0">
+        <div class="p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">All Growth Plans</h2>
+          <!-- All growth plans content will go here -->
+          <div class="text-gray-500">All growth plans content</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="flex h-full w-full overflow-hidden">
+  <div class="flex flex-col bg-gray-100 h-full w-full rounded-tl-xl overflow-hidden min-h-0">
+    <%= yield :page_content %>
+  </div>
+</div>

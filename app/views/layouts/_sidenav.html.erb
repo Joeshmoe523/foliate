@@ -1,5 +1,8 @@
 <!-- Side Navigation Bar -->
-<aside data-controller="sidebar" data-sidebar-target="sidebar" class="relative group transition-all duration-300 ease-in-out">
+<aside data-controller="sidebar" 
+      data-action="turbo:load->sidebar#turboConnect turbo:before-cache->sidebar#turboDisconnect" 
+      data-sidebar-target="sidebar" 
+      class="relative group transition-all duration-300 ease-in-out">
   <nav class="space-y-1 px-2 py-1">
     <div class="flex flex-col items-center space-y-4 py-4">
       
@@ -35,10 +38,10 @@
         <div id="dropdownRight" class="z-10 hidden bg-brand divide-y divide-gray-100 rounded-lg shadow-sm w-44">
           <ul class="py-2 text-sm text-white" aria-labelledby="dropdownRightButton">
             <li>
-              <a href="#" class="block px-4 py-2 hover:bg-brand-accent">Dashboard</a>
+              <%= link_to "Dashboard", authenticated_root_path, class: "block px-4 py-2 hover:bg-brand-accent" %>
             </li>
             <li>
-              <a href="#" class="block px-4 py-2 hover:bg-brand-highlight">Settings</a>
+              <%= link_to "Growth Plans", growth_plans_path, class: "block px-4 py-2 hover:bg-brand-accent" %>
             </li>
             <li>
               <a href="#" class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
