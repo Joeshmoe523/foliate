@@ -1,1 +1,7 @@
-<%= render "growth_plans/show", growth_plan: growth_plan %>
+<% if @specific_reflection.present? %>
+  <%= turbo_frame_tag "growth_plan_main_content" do %>
+    <%= render "reflections/show", reflection: @specific_reflection %>
+  <% end %>
+<% else %>
+  <%= render "growth_plans/show", growth_plan: growth_plan %>
+<% end %>

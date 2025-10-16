@@ -15,6 +15,11 @@ class GrowthPlansController < ApplicationController
 
   def show
     @reflection = current_user.reflections.build
+
+    # If a reflection token is provided, show that specific reflection
+    if params[:reflection_token].present?
+      @specific_reflection = @growth_plan.reflections.find_by(token: params[:reflection_token])
+    end
   end
 
   def new_reflection

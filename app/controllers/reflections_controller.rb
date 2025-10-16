@@ -19,7 +19,12 @@ class ReflectionsController < ApplicationController
     end
 
     if @reflection.save
-      redirect_to reflection_path(@reflection), notice: "Reflection created successfully."
+      # Redirect to the associated growth plan if this reflection belongs to one
+      if @reflection.reflectable_type == "GrowthPlan" && @reflection.reflectable_id.present?
+        redirect_to growth_plan_path(@reflection.reflectable, reflection_token: @reflection.token), notice: "Reflection created successfully."
+      else
+        redirect_to reflection_path(@reflection), notice: "Reflection created successfully."
+      end
     else
       redirect_to authenticated_root_path, alert: "Failed to create reflection."
     end

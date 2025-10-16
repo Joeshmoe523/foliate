@@ -1,7 +1,51 @@
 <div class="space-y-6">
+  <!-- Project Description -->
+  <div>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Description</h2>
+    <p class="text-gray-700 text-base leading-relaxed font-light">
+      <%= growth_plan.summary.present? ? growth_plan.summary : "No description available for this growth plan." %>
+    </p>
+  </div>
 
   <!-- Reflection Text Editor -->
+  <div>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Add Reflection</h2>
+    <%= form_with(model: @reflection, url: reflections_path, method: :post, local: true) do |f| %>
+      <%= f.text_field :prompt_text, hidden: true, id: "prompt_text" %>
+      <%= f.text_area :content, hidden: true, id: "content" %>
+      <%= render "templates/text_editor", target_field_id: "content" %>
 
+      <div class="flex items-center justify-between gap-4 bg-white px-4 pb-4 rounded-b-lg border-b border-x border-gray-300">
+        <div class="flex w-3/4 items-center gap-4">
+          <%= f.hidden_field :reflectable_type, value: "GrowthPlan" %>
+          <%= f.hidden_field :reflectable_id, value: growth_plan.id %>
+        </div>
+        <div>
+          <%= f.submit "Save Reflection", 
+              class: "text-white bg-brand-active-light hover:bg-brand-active focus:ring-4 focus:ring-brand-inverse font-medium rounded-lg text-sm px-4 py-2 focus:outline-none cursor-pointer",
+              data: { action: "click->text-editor#capturePromptText" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-
+  <!-- Past Reflections -->
+  <div>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Reflections</h2>
+    <div class="space-y-3">
+      <% growth_plan.reflections.order(created_at: :desc).limit(4).each do |reflection| %>
+        <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <h4 class="font-medium text-gray-900 mb-2"><%= reflection.title %></h4>
+          <p class="text-sm text-gray-500">
+            Last message <%= time_ago_in_words(reflection.updated_at) %> ago
+          </p>
+        </div>
+      <% end %>
+      <% if growth_plan.reflections.empty? %>
+        <div class="text-center py-8 text-gray-500">
+          <p>No reflections yet. Start by creating your first reflection above!</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
