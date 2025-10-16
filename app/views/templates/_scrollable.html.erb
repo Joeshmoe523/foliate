@@ -1,0 +1,8 @@
+<!-- Left Column Content - Scrollable -->
+<div class="flex-1 overflow-y-auto">
+  <div class="divide-y divide-gray-200">
+    <% if content_for?(:scrollable_content) %>
+      <%= yield(:scrollable_content) %>
+    <% end %>
+  </div>
+</div>

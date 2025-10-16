@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "reflections_list" do %>
+<div class="divide-y divide-gray-200">
+  <% if growth_plan.reflections.any? %>
+    <% growth_plan.reflections.each do |reflection| %>
+      <div>
+        <%= render "templates/column/reflection",
+          reflection: reflection %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+<% end %>

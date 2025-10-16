@@ -1,11 +1,27 @@
 class GrowthPlansController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_growth_plan, only: [ :show, :update, :destroy ]
+  before_action :set_growth_plan, only: [ :show, :new_reflection, :update, :destroy ]
   def index
-    @growth_plans = GrowthPlan.all
+    @growth_plans = current_user.growth_plans
+  end
+
+  def new
+    @growth_plan = current_user.growth_plans.build
+  end
+
+  def edit
+    @growth_plan = current_user.growth_plans.find_by(token: params[:token])
   end
 
   def show
+    @reflection = current_user.reflections.build
+  end
+
+  def new_reflection
+    @reflection = current_user.reflections.build
+    render turbo_stream: turbo_stream.update("growth_plan_main_content",
+      partial: "templates/reflection_editor",
+      locals: { growth_plan: @growth_plan, reflection: @reflection })
   end
 
   def create
@@ -38,6 +54,6 @@ class GrowthPlansController < ApplicationController
   end
 
   def growth_plan_params
-    params.require(:growth_plan).permit(:title, :visibility)
+    params.require(:growth_plan).permit(:title, :visibility, :summary)
   end
 end

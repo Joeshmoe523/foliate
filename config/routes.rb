@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :growth_plans, param: :token
+  resources :growth_plans, param: :token do
+    member do
+      get :new_reflection
+    end
+  end
   resources :reflections, param: :token
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

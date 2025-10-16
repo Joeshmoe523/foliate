@@ -1,0 +1,28 @@
+<%= link_to growth_plan_path(growth_plan), class: "block h-full" do %>
+  <div class="max-w-sm p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 transition-shadow duration-200 cursor-pointer hover:bg-white flex flex-col justify-between h-full">
+    <div>
+      <!-- Title section -->
+      <div class="flex items-start justify-between mb-3">
+        <h3 class="text-lg font-bold text-gray-900 leading-tight">
+          <%= growth_plan.title %>
+        </h3>
+      </div>
+      
+      <!-- Summary section with 3-line limit and fixed height -->
+      <div class="text-gray-700 text-sm leading-relaxed mb-4">
+        <div class="line-clamp-3 min-h-[4.5rem]">
+          <%= growth_plan.summary.present? ? growth_plan.summary : "No summary available" %>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Updated section -->
+    <div class="text-xs text-gray-500 mt-auto">
+      <% if growth_plan.updated_at.present? %>
+        Updated <%= time_ago_in_words(growth_plan.updated_at) %> ago
+      <% else %>
+        Never updated
+      <% end %>
+    </div>
+  </div>
+<% end %>

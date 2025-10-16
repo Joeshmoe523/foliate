@@ -1,29 +1,4 @@
-<div class="max-w-4xl mx-auto p-8">
-  <div class="bg-white rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-900 mb-4">
-      <%= @reflection.title %>
-    </h1>
-    
-    <div class="text-sm text-gray-500 mb-6">
-      Created: <%= @reflection.created_at.strftime('%B %d, %Y at %I:%M %p') %>
-    </div>
-
-    <% if @reflection.prompt_text.present? %>
-      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
-        <p class="text-sm text-blue-700">
-          <strong>Prompt:</strong> <%= @reflection.prompt_text %>
-        </p>
-      </div>
-    <% end %>
-    
-    <div class="prose max-w-none">
-      <%= simple_format(@reflection.content) %>
-    </div>
-    
-    <div class="mt-8 flex gap-4">
-      <%= link_to "Back to Dashboard", authenticated_root_path, class: "text-blue-700 hover:text-blue-800 font-medium" %>
-      <%= link_to "All Reflections", reflections_path, class: "text-blue-700 hover:text-blue-800 font-medium" %>
-    </div>
-  </div>
-</div>
+<%= turbo_frame_tag "growth_plan_main_content" do %>
+  <%= render "reflections/show", reflection: @reflection %>
+<% end %>
 
