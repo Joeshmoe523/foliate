@@ -18,6 +18,11 @@ class ReflectionsController < ApplicationController
       @reflection.reflectable_id = nil
     end
 
+    # Clear prompt_text if it's empty or blank
+    if @reflection.prompt_text.blank?
+      @reflection.prompt_text = nil
+    end
+
     if @reflection.save
       # Redirect to the associated growth plan if this reflection belongs to one
       if @reflection.reflectable_type == "GrowthPlan" && @reflection.reflectable_id.present?

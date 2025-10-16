@@ -170,6 +170,15 @@ export default class extends Controller {
     form.addEventListener('submit', (event) => {
       // Capture the current prompt before form submission
       this.capturePromptText();
+      
+      // Double-check: if toggle is off, ensure prompt field is empty
+      const promptToggle = document.getElementById(`reflection-prompt-toggle-${this.targetFieldIdValue}`);
+      if (promptToggle && !promptToggle.checked) {
+        const promptField = document.getElementById('prompt_text');
+        if (promptField) {
+          promptField.value = '';
+        }
+      }
     });
   }
 
@@ -198,12 +207,21 @@ export default class extends Controller {
   }
 
   capturePromptText() {
-    if (this.hasPromptSectionTarget) {
+    const promptField = document.getElementById('prompt_text');
+    if (!promptField) return;
+    
+    // Check if the prompt toggle is enabled
+    const promptToggle = document.getElementById(`reflection-prompt-toggle-${this.targetFieldIdValue}`);
+    const isPromptEnabled = promptToggle && promptToggle.checked;
+    
+    if (isPromptEnabled && this.hasPromptSectionTarget) {
       const promptText = this.promptSectionTarget.querySelector('[data-reflection-prompt-target="prompt"]')?.textContent;
-      const promptField = document.getElementById('prompt_text');
-      if (promptField && promptText) {
+      if (promptText) {
         promptField.value = promptText;
       }
+    } else {
+      // Clear the prompt field if toggle is off
+      promptField.value = '';
     }
   }
 
